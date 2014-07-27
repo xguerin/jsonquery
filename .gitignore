@@ -19,3 +19,13 @@
 *.exe
 *.out
 *.app
+
+# Temporary C/H files
+*.cpp
+*.h
+*.l
+*.y
+
+# Build engine
+Tupfile
+.tup
