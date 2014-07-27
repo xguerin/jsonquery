@@ -1,0 +1,58 @@
+entrypoints Rule ;
+
+-- Query
+
+OrRule              . Rule            ::= Rule Or Rule2 ;
+AndRule             . Rule2           ::= Rule2 And Rule3 ;
+NotRule             . Rule4           ::= Not Rule3 ;
+QrRule              . Rule5           ::= Query ;
+
+coercions Rule 6;
+
+VHas                . Query           ::= Has Path ;
+VCompare            . Query           ::= Path VOp Value ;
+
+AndOp               . And             ::= "and" ;
+NegOp               . Not             ::= "not" ;
+OrOp                . Or              ::= "or" ;
+HasOp               . Has             ::= "has" ;
+
+EqVOp               . VOp             ::= "==" ;
+NeVOp               . VOp             ::= "<>" ;
+GtVOp               . VOp             ::= ">" ;
+GeVOp               . VOp             ::= ">=" ;
+LtVOp               . VOp             ::= "<" ;
+LeVOp               . VOp             ::= "<=" ;
+
+CValue              . Value           ::= Char ;
+SValue              . Value           ::= String  ;
+IValue              . Value           ::= Integer ;
+DValue              . Value           ::= Double ;
+
+-- JSON Path
+
+SinglePath          . Path            ::= "$" ;
+MultiPath           . Path            ::= "$" LevelList ;
+
+SingleLevelList     . LevelList       ::= DottedAccessor Level ;
+MultiLevelList      . LevelList       ::= DottedAccessor Level LevelList ;
+
+SelfDottedAccessor  . DottedAccessor  ::= "." ;
+RecDottedAccessor   . DottedAccessor  ::= ".." ;
+
+AllLevel            . Level           ::= "*" ;
+SingleLevel         . Level           ::= Member ;
+BracketLevel        . Level           ::= BracketList ;
+MultiLevel          . Level           ::= Member BracketList ;
+
+SingleBracketList   . BracketList     ::= BracketAccessor ;
+MultiBracketList    . BracketList     ::= BracketAccessor BracketList ;
+
+BaseBracketAccessor . BracketAccessor ::= "[" Subscript "]" ;
+
+AllSubscript        . Subscript       ::= "*" ;
+IntegerSubscript    . Subscript       ::= Integer ;
+MemberSubscript     . Subscript       ::= "'" Member "'" ;
+
+token Member letter (letter | digit | '_' )* ;
+

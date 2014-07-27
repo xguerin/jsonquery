@@ -1,0 +1,26 @@
+entrypoints Path ;
+
+SinglePath          . Path            ::= "$" ;
+MultiPath           . Path            ::= "$" LevelList ;
+
+SingleLevelList     . LevelList       ::= DottedAccessor Level ;
+MultiLevelList      . LevelList       ::= DottedAccessor Level LevelList ;
+
+SelfDottedAccessor  . DottedAccessor  ::= "." ;
+RecDottedAccessor   . DottedAccessor  ::= ".." ;
+
+AllLevel            . Level           ::= "*" ;
+SingleLevel         . Level           ::= Member ;
+BracketLevel        . Level           ::= BracketList ;
+MultiLevel          . Level           ::= Member BracketList ;
+
+SingleBracketList   . BracketList     ::= BracketAccessor ;
+MultiBracketList    . BracketList     ::= BracketAccessor BracketList ;
+
+BaseBracketAccessor . BracketAccessor ::= "[" Subscript "]" ;
+
+AllSubscript        . Subscript       ::= "*" ;
+IntegerSubscript    . Subscript       ::= Integer ;
+MemberSubscript     . Subscript       ::= "'" Member "'" ;
+
+token Member letter (letter | digit | '_' )* ;
