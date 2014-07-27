@@ -30,28 +30,26 @@ DValue              . Value           ::= Double ;
 
 -- JSON Path
 
-SinglePath          . Path            ::= "$" ;
-MultiPath           . Path            ::= "$" LevelList ;
+SinglePath            . Path            ::= "$" ;
+MultiPath             . Path            ::= "$" LevelList ;
 
-SingleLevelList     . LevelList       ::= DottedAccessor Level ;
-MultiLevelList      . LevelList       ::= DottedAccessor Level LevelList ;
+SingleLevelList       . LevelList       ::= Level ;
+MultiLevelList        . LevelList       ::= Level LevelList ;
 
-SelfDottedAccessor  . DottedAccessor  ::= "." ;
-RecDottedAccessor   . DottedAccessor  ::= ".." ;
+DottedLevel           . Level           ::= DottedAccessor Item ;
+BracketLevel          . Level           ::= BracketAccessor ;
 
-AllLevel            . Level           ::= "*" ;
-SingleLevel         . Level           ::= Member ;
-BracketLevel        . Level           ::= BracketList ;
-MultiLevel          . Level           ::= Member BracketList ;
+SelfDottedAccessor    . DottedAccessor  ::= "." ;
+RecDottedAccessor     . DottedAccessor  ::= ".." ;
 
-SingleBracketList   . BracketList     ::= BracketAccessor ;
-MultiBracketList    . BracketList     ::= BracketAccessor BracketList ;
+AllItem               . Item            ::= "*" ;
+SingleItem            . Item            ::= Member ;
+BracketItem           . Item            ::= BracketAccessor ;
 
-BaseBracketAccessor . BracketAccessor ::= "[" Subscript "]" ;
+SingleBracketAccessor . BracketAccessor ::= "[" Subscript "]" ;
 
-AllSubscript        . Subscript       ::= "*" ;
-IntegerSubscript    . Subscript       ::= Integer ;
-MemberSubscript     . Subscript       ::= "'" Member "'" ;
+AllSubscript          . Subscript       ::= "*" ;
+IntegerSubscript      . Subscript       ::= Integer ;
+MemberSubscript       . Subscript       ::= "'" Member "'" ;
 
 token Member letter (letter | digit | '_' )* ;
-
