@@ -1,6 +1,9 @@
-!bnfc   = |>  bnfc -cpp %f > /dev/null; rm -f *.tex Test.* Printer.*;             \
-              for i in *.C; do subst ".H\"" ".h\"" $i; mv $i ${i%%.C}.cpp;  done; \
-              for i in *.H; do subst ".H\"" ".h\"" $i; mv $i ${i%%.H}.h;    done; \
+EXTRA_FLAGS =
+
+!merge  = |>  cat %f > %o |>
+!bnfc   = |>  bnfc $(EXTRA_FLAGS) -cpp %f > /dev/null; rm -f *.tex Test.* Printer.*;    \
+              for i in *.C; do subst ".H\"" ".h\"" $i; mv $i ${i%%.C}.cpp;  done;       \
+              for i in *.H; do subst ".H\"" ".h\"" $i; mv $i ${i%%.H}.h;    done;       \
           |>  Skeleton.cpp | Skeleton.h | Parser.h | %B.y | %B.l | Absyn.cpp | Absyn.h
 !flex   = |>  flex -o %o %f;  subst ".H\"" ".h\"" %o |>  Lexer.cpp
 !bison  = |>  bison -o %o %f; subst ".H\"" ".h\"" %o |>  Parser.cpp

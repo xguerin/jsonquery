@@ -1,61 +1,28 @@
 entrypoints Rule ;
 
--- Query
-
-OrRule              . Rule            ::= Rule Or Rule2 ;
-AndRule             . Rule2           ::= Rule2 And Rule3 ;
-NotRule             . Rule4           ::= Not Rule3 ;
-QrRule              . Rule5           ::= Query ;
+OrRule    . Rule    ::= Rule Or Rule2 ;
+AndRule   . Rule2   ::= Rule2 And Rule3 ;
+NotRule   . Rule4   ::= Not Rule3 ;
+QrRule    . Rule5   ::= Query ;
 
 coercions Rule 6;
 
-VHas                . Query           ::= Has Path ;
-VCompare            . Query           ::= Path VOp Value ;
+VHas      .  Query  ::= Has Path ;
+VCompare  .  Query  ::= Path VOp Value ;
 
-AndOp               . And             ::= "and" ;
-NegOp               . Not             ::= "not" ;
-OrOp                . Or              ::= "or" ;
-HasOp               . Has             ::= "has" ;
+AndOp     .  And    ::= "and" ;
+NegOp     .  Not    ::= "not" ;
+OrOp      .  Or     ::= "or" ;
+HasOp     .  Has    ::= "has" ;
 
-EqVOp               . VOp             ::= "==" ;
-NeVOp               . VOp             ::= "<>" ;
-GtVOp               . VOp             ::= ">" ;
-GeVOp               . VOp             ::= ">=" ;
-LtVOp               . VOp             ::= "<" ;
-LeVOp               . VOp             ::= "<=" ;
+EqVOp     .  VOp    ::= "==" ;
+NeVOp     .  VOp    ::= "<>" ;
+GtVOp     .  VOp    ::= ">" ;
+GeVOp     .  VOp    ::= ">=" ;
+LtVOp     .  VOp    ::= "<" ;
+LeVOp     .  VOp    ::= "<=" ;
 
-SValue              . Value           ::= String  ;
-IValue              . Value           ::= Integer ;
-DValue              . Value           ::= Double ;
+SValue    .  Value  ::= String  ;
+IValue    .  Value  ::= Integer ;
+DValue    .  Value  ::= Double ;
 
--- JSON Path
-
-SinglePath              . Path                ::= "$" ;
-MultiPath               . Path                ::= "$" ElementList ;
-
-SingleElementList       . ElementList         ::= Element ;
-MultiElementList        . ElementList         ::= Element ElementList ;
-
-DottedElement           . Element             ::= DottedAccessor Item ;
-BracketElement          . Element             ::= BracketAccessor ;
-
-SelfAccessor            . DottedAccessor      ::= "." ;
-RecursiveAccessor       . DottedAccessor      ::= ".." ;
-
-AllItem                 . Item                ::= "*" ;
-MemberItem              . Item                ::= Member ;
-BracketItem             . Item                ::= BracketAccessor ;
-
-SingletonAccessor       . BracketAccessor     ::= "[" SingletonSubscript "]" ;
-IndexedAccessor         . BracketAccessor     ::= "[" IndexSubscript "]" ;
-RangeAccessor           . BracketAccessor     ::= "[" RangeSubscript "]" ;
-
-AllSubscript            . SingletonSubscript  ::= "*" ;
-MemberSubscript         . SingletonSubscript  ::= "'" Member "'" ;
-
-SingleIndexSubscript    . IndexSubscript      ::= Integer ;
-MultiIndexSubscript     . IndexSubscript      ::= Integer "," IndexSubscript ;
-
-SingleRangeSubscript    . RangeSubscript      ::= Integer ":" Integer ":" Integer ;
-
-token Member letter (letter | digit | '_' )* ;

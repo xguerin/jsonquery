@@ -1,0 +1,29 @@
+SinglePath              . Path                ::= "$" ;
+MultiPath               . Path                ::= "$" ElementList ;
+
+SingleElementList       . ElementList         ::= Element ;
+MultiElementList        . ElementList         ::= Element ElementList ;
+
+DottedElement           . Element             ::= DottedAccessor Item ;
+BracketElement          . Element             ::= BracketAccessor ;
+
+SelfAccessor            . DottedAccessor      ::= "." ;
+RecursiveAccessor       . DottedAccessor      ::= ".." ;
+
+AllItem                 . Item                ::= "*" ;
+MemberItem              . Item                ::= Member ;
+BracketItem             . Item                ::= BracketAccessor ;
+
+SingletonAccessor       . BracketAccessor     ::= "[" SingletonSubscript "]" ;
+IndexedAccessor         . BracketAccessor     ::= "[" IndexSubscript "]" ;
+RangeAccessor           . BracketAccessor     ::= "[" RangeSubscript "]" ;
+
+AllSubscript            . SingletonSubscript  ::= "*" ;
+MemberSubscript         . SingletonSubscript  ::= "'" Member "'" ;
+
+SingleIndexSubscript    . IndexSubscript      ::= Integer ;
+MultiIndexSubscript     . IndexSubscript      ::= Integer "," IndexSubscript ;
+
+SingleRangeSubscript    . RangeSubscript      ::= Integer ":" Integer ":" Integer ;
+
+token Member letter (letter | digit | '_' )* ;

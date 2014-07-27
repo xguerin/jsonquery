@@ -1,5 +1,8 @@
 include_rules
 
-: Grammar.cf  |> !bnfc  |>
-: Grammar.l   |> !flex  |>
-: Grammar.y   |> !bison |>
+EXTRA_FLAGS += -p JSONQuery
+
+: Grammar.cf ../common/Grammar.cf |> !merge |> MergedGrammar.cf
+: MergedGrammar.cf                |> !bnfc  |>
+: MergedGrammar.l                 |> !flex  |>
+: MergedGrammar.y                 |> !bison |>

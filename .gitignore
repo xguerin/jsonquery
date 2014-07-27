@@ -25,6 +25,7 @@
 *.h
 *.l
 *.y
+MergedGrammar.cf
 
 # Build engine
 .tup
