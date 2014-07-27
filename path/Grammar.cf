@@ -1,7 +1,7 @@
-entrypoints JSONPath ;
+entrypoints Path ;
 
-SinglePath            . JSONPath        ::= "$" ;
-MultiPath             . JSONPath        ::= "$" LevelList ;
+SinglePath            . Path            ::= "$" ;
+MultiPath             . Path            ::= "$" LevelList ;
 
 SingleLevelList       . LevelList       ::= Level ;
 MultiLevelList        . LevelList       ::= Level LevelList ;
