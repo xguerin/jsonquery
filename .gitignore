@@ -27,5 +27,4 @@
 *.y
 
 # Build engine
-Tupfile
 .tup

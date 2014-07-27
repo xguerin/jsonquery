@@ -1,0 +1,7 @@
+: Grammar.cf                                                              \
+  |>  bnfc -cpp %f > /dev/null; rm -f *.tex Test.* Printer.*;             \
+      for i in *.C; do subst ".H\"" ".h\"" $i; mv $i ${i%%.C}.cpp;  done; \
+      for i in *.H; do subst ".H\"" ".h\"" $i; mv $i ${i%%.H}.h;    done; \
+  |>  Skeleton.cpp | Skeleton.h | Parser.h | Grammar.y | Grammar.l | Absyn.cpp | Absyn.h
+: Grammar.l |>  flex -o %o %f;  subst ".H\"" ".h\"" %o |>  Lexer.cpp
+: Grammar.y |>  bison -o %o %f; subst ".H\"" ".h\"" %o |>  Parser.cpp
