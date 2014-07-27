@@ -1,25 +1,31 @@
 entrypoints Path ;
 
-SinglePath            . Path            ::= "$" ;
-MultiPath             . Path            ::= "$" LevelList ;
+SinglePath              . Path                ::= "$" ;
+MultiPath               . Path                ::= "$" ElementList ;
 
-SingleLevelList       . LevelList       ::= Level ;
-MultiLevelList        . LevelList       ::= Level LevelList ;
+SingleElementList       . ElementList         ::= Element ;
+MultiElementList        . ElementList         ::= Element ElementList ;
 
-DottedLevel           . Level           ::= DottedAccessor Item ;
-BracketLevel          . Level           ::= BracketAccessor ;
+DottedElement           . Element             ::= DottedAccessor Item ;
+BracketElement          . Element             ::= BracketAccessor ;
 
-SelfDottedAccessor    . DottedAccessor  ::= "." ;
-RecDottedAccessor     . DottedAccessor  ::= ".." ;
+SelfAccessor            . DottedAccessor      ::= "." ;
+RecursiveAccessor       . DottedAccessor      ::= ".." ;
 
-AllItem               . Item            ::= "*" ;
-SingleItem            . Item            ::= Member ;
-BracketItem           . Item            ::= BracketAccessor ;
+AllItem                 . Item                ::= "*" ;
+MemberItem              . Item                ::= Member ;
+BracketItem             . Item                ::= BracketAccessor ;
 
-SingleBracketAccessor . BracketAccessor ::= "[" Subscript "]" ;
+SingletonAccessor       . BracketAccessor     ::= "[" SingletonSubscript "]" ;
+IndexedAccessor         . BracketAccessor     ::= "[" IndexSubscript "]" ;
+RangeAccessor           . BracketAccessor     ::= "[" RangeSubscript "]" ;
 
-AllSubscript          . Subscript       ::= "*" ;
-IntegerSubscript      . Subscript       ::= Integer ;
-MemberSubscript       . Subscript       ::= "'" Member "'" ;
+AllSubscript            . SingletonSubscript  ::= "*" ;
+MemberSubscript         . SingletonSubscript  ::= "'" Member "'" ;
+
+SingleIndexSubscript    . IndexSubscript      ::= Integer ;
+MultiIndexSubscript     . IndexSubscript      ::= Integer "," IndexSubscript ;
+
+SingleRangeSubscript    . RangeSubscript      ::= Integer ":" Integer ":" Integer ;
 
 token Member letter (letter | digit | '_' )* ;
