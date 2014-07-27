@@ -24,7 +24,6 @@ GeVOp               . VOp             ::= ">=" ;
 LtVOp               . VOp             ::= "<" ;
 LeVOp               . VOp             ::= "<=" ;
 
-CValue              . Value           ::= Char ;
 SValue              . Value           ::= String  ;
 IValue              . Value           ::= Integer ;
 DValue              . Value           ::= Double ;
