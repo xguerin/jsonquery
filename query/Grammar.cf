@@ -7,22 +7,25 @@ QrRule    . Rule5   ::= Query ;
 
 coercions Rule 6;
 
-VHas      .  Query  ::= Has Path ;
-VCompare  .  Query  ::= Path VOp Value ;
+VHas      . Query   ::= Has Path ;
+VCompare  . Query   ::= Path VOp Value ;
+VMatch    . Query   ::= Path ROp String ;
 
-AndOp     .  And    ::= "and" ;
-NegOp     .  Not    ::= "not" ;
-OrOp      .  Or     ::= "or" ;
-HasOp     .  Has    ::= "has" ;
+AndOp     . And     ::= "and" ;
+NegOp     . Not     ::= "not" ;
+OrOp      . Or      ::= "or" ;
+HasOp     . Has     ::= "has" ;
 
-EqVOp     .  VOp    ::= "==" ;
-NeVOp     .  VOp    ::= "<>" ;
-GtVOp     .  VOp    ::= ">" ;
-GeVOp     .  VOp    ::= ">=" ;
-LtVOp     .  VOp    ::= "<" ;
-LeVOp     .  VOp    ::= "<=" ;
+EqVOp     . VOp     ::= "==" ;
+NeVOp     . VOp     ::= "<>" ;
+GtVOp     . VOp     ::= ">" ;
+GeVOp     . VOp     ::= ">=" ;
+LtVOp     . VOp     ::= "<" ;
+LeVOp     . VOp     ::= "<=" ;
 
-SValue    .  Value  ::= String  ;
-IValue    .  Value  ::= Integer ;
-DValue    .  Value  ::= Double ;
+ReROp     . ROp     ::= "=~" ;
+
+SValue    . Value  ::= String  ;
+IValue    . Value  ::= Integer ;
+DValue    . Value  ::= Double ;
 

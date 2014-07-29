@@ -19,11 +19,12 @@ IndexedAccessor         . BracketAccessor     ::= "[" IndexSubscript "]" ;
 RangeAccessor           . BracketAccessor     ::= "[" RangeSubscript "]" ;
 
 AllSubscript            . SingletonSubscript  ::= "*" ;
-MemberSubscript         . SingletonSubscript  ::= "'" Member "'" ;
+NameSubscript           . SingletonSubscript  ::= Name ;
 
 SingleIndexSubscript    . IndexSubscript      ::= Integer ;
 MultiIndexSubscript     . IndexSubscript      ::= Integer "," IndexSubscript ;
 
 SingleRangeSubscript    . RangeSubscript      ::= Integer ":" Integer ":" Integer ;
 
-token Member letter (letter | digit | '_' )* ;
+token Member  letter (letter | digit | '_' | '-' )* ;
+token Name    '\'' ((char - ["'\\"]) | ('\\' ["'\\nt"]))+ '\'' ;
