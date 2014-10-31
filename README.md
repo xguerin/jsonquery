@@ -1,4 +1,4 @@
 jsonquery
 =========
 
-JSON query tools
+JSON grammar tools: Format, path, and query
