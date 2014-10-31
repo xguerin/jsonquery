@@ -1,0 +1,36 @@
+entrypoints Object ;
+
+comment "#" ;
+comment "--" ;
+comment "//" ;
+comment "/*" "*/" ;
+
+EmptyObject             . Object              ::= "{" "}" ;
+FullObject              . Object              ::= "{" MemberList "}" ;
+
+SingleMemberList        . MemberList          ::= Pair ;
+MultiMemberList         . MemberList          ::= Pair "," MemberList ;
+
+SinglePair              . Pair                ::= String ":" Value ;
+
+EmptyArray              . Array               ::= "[" "]" ;
+FullArray               . Array               ::= "[" ElementList "]" ;
+
+SingleElementList       . ElementList         ::= Value ;
+MultiElementList        . ElementList         ::= Value "," ElementList ;
+
+StringValue             . Value               ::= String ;
+IntegerValue            . Value               ::= Integer ;
+FloatValue              . Value               ::= Float ;
+ObjectValue             . Value               ::= Object ;
+ArrayValue              . Value               ::= Array ;
+BooleanValue            . Value               ::= Boolean ;
+NullValue               . Value               ::= "null" ;
+
+DoubleFloat             . Float               ::= Double ;
+InfFloat                . Float               ::= "inf" ;
+PInfFloat               . Float               ::= "+inf" ;
+NInfFloat               . Float               ::= "-inf" ;
+
+TrueBoolean             . Boolean             ::= "true" ;
+FalseBoolean            . Boolean             ::= "false" ;

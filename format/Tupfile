@@ -1,0 +1,7 @@
+include_rules
+
+EXTRA_FLAGS += -p JSONFormat
+
+: Grammar.cf  |> !bnfc  |>
+: Grammar.l   |> !flex  |>
+: Grammar.y   |> !bison |>
