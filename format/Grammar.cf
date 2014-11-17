@@ -31,6 +31,9 @@ DoubleFloat             . Float               ::= Double ;
 InfFloat                . Float               ::= "inf" ;
 PInfFloat               . Float               ::= "+inf" ;
 NInfFloat               . Float               ::= "-inf" ;
+NaNFloat                . Float               ::= "nan" ;
+PNaNFloat               . Float               ::= "+nan" ;
+NNaNFloat               . Float               ::= "-nan" ;
 
 TrueBoolean             . Boolean             ::= "true" ;
 FalseBoolean            . Boolean             ::= "false" ;
