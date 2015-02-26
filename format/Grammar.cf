@@ -12,14 +12,14 @@ Pair    . P       ::= String ":" V ;
 Array   . A       ::= "[" [V] "]" ;
 
 Str     . V       ::= String ;
-Int     . V       ::= Integer ;
+Int     . V       ::= EInteger ;
 Flt     . V       ::= Float ;
 Obj     . V       ::= O ;
 Ary     . V       ::= A ;
 Bln     . V       ::= Boolean ;
 Nul     . V       ::= "null" ;
 
-Dbl     . Float   ::= Double ;
+Dbl     . Float   ::= EDouble ;
 Inf     . Float   ::= "inf" ;
 PInf    . Float   ::= "+inf" ;
 NInf    . Float   ::= "-inf" ;
@@ -32,3 +32,6 @@ False   . Boolean ::= "false" ;
 
 separator P "," ;
 separator V "," ;
+
+token EInteger  ( '+' | '-' )? digit+ ;
+token EDouble   ( '+' | '-' )? digit+ '.' digit+ ( 'e' ( '+' | '-')? digit+ )? ;
