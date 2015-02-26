@@ -1,39 +1,34 @@
-entrypoints Object ;
+entrypoints O ;
 
+comment ";" ;
 comment "#" ;
 comment "--" ;
 comment "//" ;
 comment "/*" "*/" ;
+comment "(*" "*)" ;
 
-EmptyObject             . Object              ::= "{" "}" ;
-FullObject              . Object              ::= "{" MemberList "}" ;
+Object  . O       ::= "{" [P] "}" ;
+Pair    . P       ::= String ":" V ;
+Array   . A       ::= "[" [V] "]" ;
 
-SingleMemberList        . MemberList          ::= Pair ;
-MultiMemberList         . MemberList          ::= Pair "," MemberList ;
+Str     . V       ::= String ;
+Int     . V       ::= Integer ;
+Flt     . V       ::= Float ;
+Obj     . V       ::= O ;
+Ary     . V       ::= A ;
+Bln     . V       ::= Boolean ;
+Nul     . V       ::= "null" ;
 
-SinglePair              . Pair                ::= String ":" Value ;
+Dbl     . Float   ::= Double ;
+Inf     . Float   ::= "inf" ;
+PInf    . Float   ::= "+inf" ;
+NInf    . Float   ::= "-inf" ;
+NaN     . Float   ::= "nan" ;
+PNaN    . Float   ::= "+nan" ;
+NNaN    . Float   ::= "-nan" ;
 
-EmptyArray              . Array               ::= "[" "]" ;
-FullArray               . Array               ::= "[" ElementList "]" ;
+True    . Boolean ::= "true" ;
+False   . Boolean ::= "false" ;
 
-SingleElementList       . ElementList         ::= Value ;
-MultiElementList        . ElementList         ::= Value "," ElementList ;
-
-StringValue             . Value               ::= String ;
-IntegerValue            . Value               ::= Integer ;
-FloatValue              . Value               ::= Float ;
-ObjectValue             . Value               ::= Object ;
-ArrayValue              . Value               ::= Array ;
-BooleanValue            . Value               ::= Boolean ;
-NullValue               . Value               ::= "null" ;
-
-DoubleFloat             . Float               ::= Double ;
-InfFloat                . Float               ::= "inf" ;
-PInfFloat               . Float               ::= "+inf" ;
-NInfFloat               . Float               ::= "-inf" ;
-NaNFloat                . Float               ::= "nan" ;
-PNaNFloat               . Float               ::= "+nan" ;
-NNaNFloat               . Float               ::= "-nan" ;
-
-TrueBoolean             . Boolean             ::= "true" ;
-FalseBoolean            . Boolean             ::= "false" ;
+separator P "," ;
+separator V "," ;
