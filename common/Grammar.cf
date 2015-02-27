@@ -1,5 +1,8 @@
-SinglePath              . Path                ::= "$" ;
-MultiPath               . Path                ::= "$" ElementList ;
+SinglePath              . Path                ::= Root ;
+MultiPath               . Path                ::= Root ElementList ;
+
+LocalRoot               . Root                ::= "@";
+GlobalRoot              . Root                ::= "$";
 
 SingleElementList       . ElementList         ::= Element ;
 MultiElementList        . ElementList         ::= Element ElementList ;
